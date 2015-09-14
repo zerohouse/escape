@@ -29,6 +29,8 @@
     "mongoose": "^4.1.3",
     "multer": "^0.1.8",
     "sync-exec": "^0.6.1",
+    "connect-redis": "^2.5.0",
+    "redis": "^1.0.0",
     "winston": "^1.0.1"
   },
   "devDependencies": {
