@@ -10,7 +10,6 @@ var path = '/update/deploy',
         'pm2 start server.js'
     ];
 
-
 var http = require('http');
 var createHandler = require('github-webhook-handler');
 var handler = createHandler({path: path, secret: secret});
