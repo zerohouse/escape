@@ -1,6 +1,6 @@
-dist
-server/db.js
-server/route.js
+dist/**/*.*
+!dist/lib/**/*.*
+!dist/favicon.ico
 
 # Created by https://www.gitignore.io/api/webstorm,node
 
