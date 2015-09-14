@@ -10,6 +10,6 @@ require('./utils/parse.js');
 require('./utils/upload.js')(app);
 require('./utils/session.js')(app);
 
-require('./route/route.js')(app, logger);
+require('./route/route.js')(app);
 
 module.exports = app;

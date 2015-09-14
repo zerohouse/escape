@@ -23,6 +23,9 @@ module.exports = function (grunt) {
         dest: 'dist/js.js'
     };
     config.uglify = {
+        options: {
+            mangle: false
+        },
         build: {
             src: 'dist/js.js',
             dest: 'dist/js.min.js'
@@ -37,6 +40,7 @@ module.exports = function (grunt) {
                 'node_modules/angular/angular.js',
                 'node_modules/angular-mocks/angular-mocks.js',
                 'node_modules/angular-ui-router/build/angular-ui-router.min.js',
+                'node_modules/angular-ui-bootstrap/ui-bootstrap.min.js',
                 'dist/js.js',
                 'client/**/*_test.js'
             ]
@@ -51,15 +55,15 @@ module.exports = function (grunt) {
             interrupt: true
         }
     };
-    config.watch.clientTest = {
-        files: [
-            'client/**/*_test.js'
-        ],
-        tasks: ['karma:client'],
-        options: {
-            interrupt: true
-        }
-    };
+    //config.watch.clientTest = {
+    //    files: [
+    //        'client/**/*_test.js'
+    //    ],
+    //    tasks: ['karma:client'],
+    //    options: {
+    //        interrupt: true
+    //    }
+    //};
 
 
     // LESS Comfile And Concat
@@ -120,44 +124,6 @@ module.exports = function (grunt) {
     };
 
 
-    config.concat.route = {
-        src: [
-            'server/route/scripts/**/*.pre.js',
-            'server/route/scripts/**/*.js',
-            'server/route/scripts/**/*.post.js'
-        ],
-        dest: 'server/route/route.js'
-    };
-
-    config.watch.route = {
-        files: [
-            'server/route/scripts/**/*.js'
-        ],
-        tasks: ['concat:route'],
-        options: {
-            interrupt: true
-        }
-    };
-
-    config.concat.db = {
-        src: [
-            'server/route/scripts/**/*.pre.js',
-            'server/route/scripts/**/*.js',
-            'server/route/scripts/**/*.post.js'
-        ],
-        dest: 'server/db/db.js'
-    };
-
-    config.watch.db = {
-        files: [
-            'server/db/scripts/**/*.js'
-        ],
-        tasks: ['concat:db'],
-        options: {
-            interrupt: true
-        }
-    };
-
     config.watch.serverTest = {
         files: [
             'server/**/*_test.js'
@@ -205,6 +171,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-mocha-test');
 
     // Default task(s).
-    grunt.registerTask('default', ['concat', 'uglify', 'less', 'concat_css', 'cssmin', 'copy', 'clean', 'mochaTest', 'karma']);
+    grunt.registerTask('default', ['concat', 'uglify', 'less', 'concat_css', 'cssmin', 'copy', 'clean']);
     grunt.registerTask('run', ['default', 'concurrent:dev']);
 };
