@@ -13,7 +13,27 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('main', {
             url: "/",
             controller: "main",
-            templateUrl: "/dist/main/main.html"
+            templateUrl: "/dist/pages/main/main.html"
+        })
+        .state('booking', {
+            url: "/",
+            controller: "booking",
+            templateUrl: "/dist/pages/booking/booking.html"
+        })
+        .state('room', {
+            url: "/",
+            controller: "room",
+            templateUrl: "/dist/pages/room/room.html"
+        })
+        .state('faq', {
+            url: "/",
+            controller: "faq",
+            templateUrl: "/dist/pages/faq/faq.html"
+        })
+        .state('contact', {
+            url: "/",
+            controller: "contact",
+            templateUrl: "/dist/pages/contact/contact.html"
         });
 
 });
