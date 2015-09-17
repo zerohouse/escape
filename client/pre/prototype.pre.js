@@ -35,6 +35,16 @@ Date.prototype.toAmPm = function () {
     return hours + ':' + minutes + ampm;
 };
 
+Date.prototype.toTime = function () {
+    var hours = this.getHours();
+    var minutes = this.getMinutes();
+    if (minutes < 10)
+        minutes = "0" + minutes;
+    if (hours < 10)
+        hours = "0" + hours;
+    return hours + ':' + minutes;
+};
+
 Date.prototype.toString = function () {
     var month = '' + (this.getMonth() + 1),
         day = '' + this.getDate(),

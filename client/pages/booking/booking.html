@@ -6,6 +6,22 @@
 
 <div class="container">
     <div class="row">
+        <div class="panel-body">
+            <div style="margin-left:30px;" class="btn-group" dropdown is-open="status.isopen">
+                <button type="button" class="btn btn-success" dropdown-toggle
+                        ng-disabled="disabled">
+                    {{name[filter.type]||"전체테마"}} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li ng-click="filter.type=undefined"><a>전체</a></li>
+                    <li class="divider"></li>
+                    <li ng-repeat="(key, value) in name"><a ng-click="filter.type = key">{{value}}</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
         <div class="col-md-6">
             <div class="panel-body">
                 <h4>
@@ -24,19 +40,6 @@
 
                 <span style="margin-left:30px;">
                 <i class="fa fa-krw"></i> {{price[size]||0}}</span>
-
-                    <!-- Single button -->
-                    <div style="margin-left:30px;" class="btn-group" dropdown is-open="status.isopen">
-                        <button type="button" class="btn btn-success" dropdown-toggle
-                                ng-disabled="disabled">
-                            {{name[filter.type]||"전체테마"}} <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li ng-click="filter.type=undefined"><a>전체</a></li>
-                            <li class="divider"></li>
-                            <li ng-repeat="(key, value) in name"><a ng-click="filter.type = key">{{value}}</a></li>
-                        </ul>
-                    </div>
                 </h4>
             </div>
         </div>
@@ -59,7 +62,7 @@
         <tbody>
 
         <tr ng-repeat="game in games | orderBy:'date' | filter:filter">
-            <td>{{game.date.toAmPm()}}</td>
+            <td>{{game.date.toTime()}}</td>
             <td>{{name[game.type]}}</td>
             <td><i class="fa fa-cog" ng-repeat="d in diff[game.type]"></i></td>
             <td>
