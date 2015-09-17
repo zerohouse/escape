@@ -1,1 +1,78 @@
-books
+<div class="container">
+    <h3>Booking
+        <small>예약하기</small>
+    </h3>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel-body">
+                <h4>
+                    인원
+                <span style="margin-left:10px;" class="label"
+                      ng-class="{'label-default':size!=1,'label-success':size==1}"
+                      ng-click="size=1">1</span>
+                <span class="label" ng-class="{'label-default':size!=2,'label-success':size==2}"
+                      ng-click="size=2">2</span>
+                <span class="label" ng-class="{'label-default':size!=3,'label-success':size==3}"
+                      ng-click="size=3">3</span>
+                <span class="label" ng-class="{'label-default':size!=4,'label-success':size==4}"
+                      ng-click="size=4">4</span>
+                <span class="label" ng-class="{'label-default':size!=5,'label-success':size==5}"
+                      ng-click="size=5">5</span>
+
+                <span style="margin-left:30px;">
+                <i class="fa fa-krw"></i> {{price[size]||0}}</span>
+
+                    <!-- Single button -->
+                    <div style="margin-left:30px;" class="btn-group" dropdown is-open="status.isopen">
+                        <button type="button" class="btn btn-success" dropdown-toggle
+                                ng-disabled="disabled">
+                            {{name[filter.type]||"전체테마"}} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li ng-click="filter.type=undefined"><a>전체</a></li>
+                            <li class="divider"></li>
+                            <li ng-repeat="(key, value) in name"><a ng-click="filter.type = key">{{value}}</a></li>
+                        </ul>
+                    </div>
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <table class="table">
+        <thead>
+        <tr>
+            <td>시간</td>
+            <td>테마</td>
+            <td>난이도</td>
+            <td>예약현황</td>
+        </tr>
+
+
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="game in games | orderBy:'date' | filter:filter">
+            <td>{{game.date.toAmPm()}}</td>
+            <td>{{name[game.type]}}</td>
+            <td><i class="fa fa-cog" ng-repeat="d in diff[game.type]"></i></td>
+            <td>
+                <span ng-show="!game.occupied" class="green">예약가능</span>
+                <span ng-show="game.occupied" class="red">예약마감</span>
+            </td>
+        </tr>
+
+
+        </tbody>
+
+
+    </table>
+
+
+</div>
