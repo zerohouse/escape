@@ -1,14 +1,6 @@
-app.controller('booking', function ($scope, $stateParams) {
+app.controller('booking', function ($scope, $document, $timeout) {
 
     var date = $scope.date = new Date();
-    $scope.$on('$stateChangeSuccess', function () {
-        if ($stateParams.date.length == 8) {
-            var year = $stateParams.date.substr(0, 4);
-            var month = $stateParams.date.substr(4, 2) - 1;
-            var day = $stateParams.date.substr(6, 2);
-            date = $scope.date = new Date(year, month, day);
-        }
-    });
 
     var games = $scope.games = [];
     games.push(new Treasure(new Date(date.getFullYear(), date.getMonth(), date.getDate(), 10, 45)));
@@ -18,6 +10,7 @@ app.controller('booking', function ($scope, $stateParams) {
     games.push(new Treasure(new Date(date.getFullYear(), date.getMonth(), date.getDate(), 16, 5)));
     games.push(new Treasure(new Date(date.getFullYear(), date.getMonth(), date.getDate(), 17, 25)));
     games.push(new Treasure(new Date(date.getFullYear(), date.getMonth(), date.getDate(), 18, 45)));
+    games.push(new Treasure(new Date(date.getFullYear(), date.getMonth(), date.getDate(), 21, 25)));
     games.push(new Treasure(new Date(date.getFullYear(), date.getMonth(), date.getDate(), 20, 5)));
 
     games.push(new Stalker(new Date(date.getFullYear(), date.getMonth(), date.getDate(), 11, 0)));
@@ -102,6 +95,20 @@ app.controller('booking', function ($scope, $stateParams) {
         this.type = 'treasure';
         this.date = date;
     }
+
+
+    $scope.reserve = function (game) {
+        $scope.game = game;
+        game.date.setDate($scope.date.getDate());
+        game.date.setMonth($scope.date.getMonth());
+        $scope.res = true;
+        $timeout(function () {
+            var el = angular.element(document.getElementById('booking'));
+            $document.scrollToElement(el, 30, 500);
+        });
+
+    };
+
 
 });
 

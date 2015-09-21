@@ -1,2 +1,1 @@
-
-var app = angular.module('test', ['ui.router', 'ngSanitize', 'ngAnimate', 'ui.bootstrap']);
+var app = angular.module('test', ['ui.router', 'datePicker', 'ngSanitize', 'ngAnimate', 'ui.bootstrap', 'duScroll']);

@@ -1,12 +1,17 @@
 <div class="container">
-    <h3>Booking
-        <small>예약하기</small>
-    </h3>
+    <div class="panel-body">
+        <h3>Booking
+            <small>예약하기</small>
+        </h3>
+    </div>
 </div>
 
-<div class="container">
+<div class="container" style="margin-bottom: 30px;">
     <div class="row">
-        <div class="panel-body">
+        <div class="col-md-4">
+            <div date-picker="date" min-view="date" max-view="date"></div>
+        </div>
+        <div class="col-md-8">
             <div style="margin-left:30px;" class="btn-group" dropdown is-open="status.isopen">
                 <button type="button" class="btn btn-success" dropdown-toggle
                         ng-disabled="disabled">
@@ -18,11 +23,7 @@
                     <li ng-repeat="(key, value) in name"><a ng-click="filter.type = key">{{value}}</a></li>
                 </ul>
             </div>
-        </div>
 
-    </div>
-    <div class="row">
-        <div class="col-md-6">
             <div class="panel-body">
                 <h4>
                     인원
@@ -46,6 +47,26 @@
     </div>
 </div>
 
+<div class="container" style="margin-bottom: 30px;" ng-show="res" id="booking">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">예약 <i ng-click="res = !res" class="fa fa-times"></i></div>
+                <div class="panel-body">
+                    <h4>게임 : {{name[game.type]}}</h4>
+                    <h4>시간 : {{game.date.toDateString()}}</h4>
+                    <input class="form-control" placeholder="예약자명">
+                    <input class="form-control" placeholder="이메일">
+                    <input class="form-control" placeholder="연락처">
+                </div>
+                <div class="panel-footer">
+                    <div class="btn btn-primary">예약하기</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
 
     <table class="table">
@@ -60,20 +81,16 @@
 
         </thead>
         <tbody>
-
         <tr ng-repeat="game in games | orderBy:'date' | filter:filter">
             <td>{{game.date.toTime()}}</td>
             <td>{{name[game.type]}}</td>
             <td><i class="fa fa-cog" ng-repeat="d in diff[game.type]"></i></td>
             <td>
-                <span ng-show="!game.occupied" class="green">예약가능</span>
+                <span ng-show="!game.occupied" class="green" ng-click="reserve(game)">예약가능</span>
                 <span ng-show="game.occupied" class="red">예약마감</span>
             </td>
         </tr>
-
-
         </tbody>
-
 
     </table>
 
