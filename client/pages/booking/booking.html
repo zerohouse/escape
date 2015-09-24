@@ -9,11 +9,11 @@
 
 <div class="container" style="margin-bottom: 30px;" id="booking">
     <div class="row">
-        <div class="col-md-8" ng-show="res">
+        <div class="col-md-8">
             <div class="panel panel-primary">
                 <div class="panel-heading">예약 <i ng-click="res = !res" class="fa fa-times"></i></div>
                 <div class="panel-body">
-                    <h4>게임 : {{name[game.type]}}</h4>
+                    <h4>게임 : {{name[game.type]}}<span ng-show="!name[game.type]" ng-click="toList()">목록에서 선택해주세요.</span></h4>
                     <h4>시간 : {{game.date.toDateString()}}</h4>
                     <h4>
                         인원
@@ -50,7 +50,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container" id="list">
     <table class="table">
         <thead>
         <tr>

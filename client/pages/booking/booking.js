@@ -166,12 +166,17 @@ app.controller('booking', function (req, $scope, $document, $timeout) {
 
     $scope.reserve = function (game) {
         $scope.game = game;
-        $scope.res = true;
         $timeout(function () {
             var el = angular.element(document.getElementById('booking'));
             $document.scrollToElement(el, 30, 500);
         });
     };
+    $scope.toList = function(){
+        $timeout(function () {
+            var el = angular.element(document.getElementById('list'));
+            $document.scrollToElement(el, 30, 500);
+        });
+    }
 
 
 });
