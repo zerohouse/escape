@@ -23,12 +23,13 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">더 궁금하신 사항</div>
                 <div class="panel-body">
-                    <input class="form-control" placeholder="답변받으실 Email">
-                    <input class="form-control" placeholder="답변받으실 전화번호">
-                    <textarea class="form-control" placeholder="궁금하신 사항"></textarea>
+                    <input class="form-control" placeholder="답변받으실 Email" ng-model="question.email">
+                    <input class="form-control" placeholder="답변받으실 전화번호" ng-model="question.phone">
+                    <textarea class="form-control" placeholder="궁금하신 사항" ng-model="question.body"></textarea>
                 </div>
                 <div class="panel-footer">
-                    <div class="btn btn-primary">질문하기</div>
+                    <div class="btn btn-primary" ng-click="send()" ng-disabled="error()">문의 보내기</div>
+                    <span ng-show="error()">{{error()}}</span>
                 </div>
             </div>
         </div>

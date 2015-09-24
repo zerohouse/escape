@@ -11,12 +11,17 @@
     <carousel interval="myInterval" no-wrap="noWrapSlides">
         <slide ng-repeat="slide in slides" active="slide.active">
             <div class="col-md-6">
-                <img ng-src="{{slide.image}}" class="slide">
+                <div class="panel-body">
+                    <img ng-src="{{slide.image}}" class="slide">
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="description">
 
-                    <h1><div class="bar"></div>{{slide.head}}</h1>
+                    <h1>
+                        <div class="bar"></div>
+                        {{slide.head}}
+                    </h1>
                     <h4>{{slide.sub}}</h4>
 
                     <p>{{slide.body}}</p>

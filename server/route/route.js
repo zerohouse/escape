@@ -49,4 +49,6 @@ module.exports = function (app) {
             res.send({err: err, result: result});
         });
     });
+
+    require('./mail.js')(app);
 };

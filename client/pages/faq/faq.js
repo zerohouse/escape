@@ -1,5 +1,30 @@
-app.controller('faq', function ($scope) {
+app.controller('faq', function ($scope, req) {
 
+    var mail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+    $scope.error = function () {
+        if (!$scope.question)
+            return "내용이 없습니다.";
+        if (!$scope.question.body)
+            return "내용이 없습니다.";
+        if (!$scope.question.email)
+            return "회신받으실 이메일을 입력해주세요.";
+        if (!mail.test($scope.question.email))
+            return "이메일 형식이 다릅니다.";
+        if (!$scope.question.phone)
+            return "회신받으실 연락처를 남겨주세요.";
+        return false;
+    };
+
+    $scope.send = function () {
+        if ($scope.error())
+            return;
+        var mail = $scope.question.body.replace("\n", "<br>") + " " + $scope.question.email + " " + $scope.question.phone;
+        req.gets('/api/faq', {body: mail}).success(function () {
+            $scope.question = {};
+            alert("메시지를 보냈습니다.");
+        });
+    };
 
     $scope.questions = [
         {
