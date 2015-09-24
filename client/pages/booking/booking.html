@@ -52,35 +52,29 @@
         <thead>
         <tr>
             <td>시간</td>
-            <td>
-                <div class="btn-group" dropdown>
-                    <button type="button" class="btn btn-success" dropdown-toggle
-                            ng-disabled="disabled">
-                        {{name[filter.type]||"전체테마"}} <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li ng-click="filter.type=undefined"><a>전체</a></li>
-                        <li class="divider"></li>
-                        <li ng-repeat="(key, value) in name"><a ng-click="filter.type = key">{{value}}</a></li>
-                    </ul>
-                </div>
+            <td dropdown>
+                <span dropdown-toggle ng-click>
+                    {{name[filter.type]||"전체테마"}} <span class="caret"></span>
+                </span>
+                <ul class="dropdown-menu">
+                    <li ng-click="filter.type=undefined"><a>전체</a></li>
+                    <li class="divider"></li>
+                    <li ng-repeat="(key, value) in name"><a ng-click="filter.type = key">{{value}}</a></li>
+                </ul>
             </td>
             <td>
                 난이도
             </td>
-            <td>
-                <div class="btn-group" dropdown>
-                    <button type="button" class="btn btn-success" dropdown-toggle
-                            ng-disabled="disabled">
+            <td dropdown>
+                    <span dropdown-toggle ng-click>
                         {{oname[filter.occupied]||"예약현황"}} <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li ng-click="filter.occupied=undefined"><a>전체</a></li>
-                        <li class="divider"></li>
-                        <li ng-click="filter.occupied='a'"><a>예약가능</a></li>
-                        <li ng-click="filter.occupied='o'"><a>예약마감</a></li>
-                    </ul>
-                </div>
+                    </span>
+                <ul class="dropdown-menu">
+                    <li ng-click="filter.occupied=undefined"><a>전체</a></li>
+                    <li class="divider"></li>
+                    <li ng-click="filter.occupied='a'"><a>예약가능</a></li>
+                    <li ng-click="filter.occupied='o'"><a>예약마감</a></li>
+                </ul>
             </td>
         </tr>
         </thead>
