@@ -11,9 +11,10 @@
     <div class="row">
         <div class="col-md-8">
             <div class="panel panel-primary">
-                <div class="panel-heading">예약 <i ng-click="res = !res" class="fa fa-times"></i></div>
+                <div class="panel-heading">예약</div>
                 <div class="panel-body">
-                    <h4>게임 : {{name[game.type]}}<span ng-show="!name[game.type]" ng-click="toList()">목록에서 선택해주세요.</span></h4>
+                    <h4>게임 : {{name[game.type]}}<span ng-show="!name[game.type]" ng-click="toList()">목록에서 선택해주세요.</span>
+                    </h4>
                     <h4>시간 : {{game.date.toDateString()}}</h4>
                     <h4>
                         인원
@@ -31,10 +32,12 @@
                     </h4>
                     <h4>가격 : <i class="fa fa-krw"></i> {{price[info.size]||0}}</h4>
 
-                    <input class="form-control" placeholder="예약자명" ng-model="info.name">
-                    <input class="form-control" placeholder="이메일" ng-model="info.email">
-                    <input class="form-control" placeholder="연락처" ng-model="info.phone">
-                    <textarea class="form-control" placeholder="메모" ng-model="info.memo"></textarea>
+                    <div ng-show="name[game.type]">
+                        <input class="form-control" placeholder="예약자명" ng-model="info.name">
+                        <input class="form-control" placeholder="이메일" ng-model="info.email">
+                        <input class="form-control" placeholder="연락처" ng-model="info.phone">
+                        <textarea class="form-control" placeholder="메모" ng-model="info.memo"></textarea>
+                    </div>
                 </div>
                 <div class="panel-footer">
 
@@ -89,12 +92,14 @@
                 <div ng-switch="diff[game.type]">
                     <div ng-switch-when="4"><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i
                             class="fa fa-cog"></i><i class="fa fa-cog"></i></div>
-                    <div ng-switch-when="4.5"><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i class="fa fa-cog half"></i></div>
-                    <div ng-switch-when="5"><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i class="fa fa-cog"></i></div>
+                    <div ng-switch-when="4.5"><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i
+                            class="fa fa-cog"></i><i class="fa fa-cog"></i><i class="fa fa-cog half"></i></div>
+                    <div ng-switch-when="5"><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i
+                            class="fa fa-cog"></i><i class="fa fa-cog"></i><i class="fa fa-cog"></i></div>
                 </div>
             </td>
             <td>
-                <span ng-show="game.occupied=='a'" class="green" ng-click="reserve(game)">예약가능</span>
+                <span ng-show="game.occupied=='a'" class="green" ng-click="reserve(game)">예약하기</span>
                 <span ng-show="game.occupied=='o'" class="red">예약마감</span>
             </td>
         </tr>
