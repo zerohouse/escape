@@ -4,7 +4,7 @@ app.controller('room', function ($scope) {
         {
             image: '/dist/lib/01.jpg',
             head: "작전명 Classified",
-            sub: "임무를 완수하",
+            sub: "임무를 완수하라",
             body: ""
         },
         {
