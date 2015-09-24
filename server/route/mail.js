@@ -14,7 +14,7 @@ module.exports = function (app) {
     app.get('/api/faq', function (req, res) {
         var mailOptions = {
             from: '박성호 ✔ <parksungho86@gmail.com>', // sender address
-            to: "parksungho86@gmail.com",
+            to: "sixtyescape@naver.com",
             subject: req.passed.body.substr(0, 15), // Subject line
             html: req.passed.body // html body
         };
