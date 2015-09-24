@@ -13,13 +13,14 @@ var transporter = nodemailer.createTransport(sesTransport(options));
 module.exports = function (app) {
     app.get('/api/faq', function (req, res) {
         var mailOptions = {
-            from: '박성호 ✔ <parksungho86@gmail.com>', // sender address
+            from: 'sixtyescape@naver.com', // sender address
             to: "sixtyescape@naver.com",
             subject: req.passed.body.substr(0, 15), // Subject line
             html: req.passed.body // html body
         };
         res.send({});
         transporter.sendMail(mailOptions, function (error, info) {
+            console.log(error, info);
         });
     });
 };
