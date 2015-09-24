@@ -21,7 +21,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/dist/pages/booking/booking.html"
         })
         .state('room', {
-            url: "/",
+            url: "/room",
             controller: "room",
             templateUrl: "/dist/pages/room/room.html"
         })

@@ -53,6 +53,13 @@ app.controller('booking', function ($scope, $document, $timeout) {
     games.push(new Terrorist(new Date(date.getFullYear(), date.getMonth(), date.getDate(), 20, 50)));
     games.push(new Terrorist(new Date(date.getFullYear(), date.getMonth(), date.getDate(), 22, 10)));
 
+    games.forEach(function (game) {
+        if (game.occupied) {
+            game.occupied = 'o';
+            return;
+        }
+        game.occupied = 'a';
+    });
 
     $scope.filter = {};
     $scope.name = {};
@@ -61,6 +68,7 @@ app.controller('booking', function ($scope, $document, $timeout) {
     $scope.name.classified = "작전명 Classified";
     $scope.name.stalker = "스토커 (Stalker)";
     $scope.name.treasure = "해적 : Treasure Map";
+    $scope.oname = {o: "예약마감", a: "예약가능"};
     $scope.diff = {};
     $scope.diff.terrorist = [0, 1, 2];
     $scope.diff.collector = [0, 1, 2, 3, 4];
@@ -74,6 +82,7 @@ app.controller('booking', function ($scope, $document, $timeout) {
     function Terrorist(date) {
         this.type = 'terrorist';
         this.date = date;
+        this.occupied = true;
     }
 
     function Collector(date) {
@@ -97,16 +106,20 @@ app.controller('booking', function ($scope, $document, $timeout) {
     }
 
 
+    $scope.$watch('date', function (date) {
+        if (!$scope.game)
+            return;
+        $scope.game.date.setMonth(date.getMonth());
+        $scope.game.date.setDate(date.getDate());
+    });
+
     $scope.reserve = function (game) {
         $scope.game = game;
-        game.date.setDate($scope.date.getDate());
-        game.date.setMonth($scope.date.getMonth());
         $scope.res = true;
         $timeout(function () {
             var el = angular.element(document.getElementById('booking'));
             $document.scrollToElement(el, 30, 500);
         });
-
     };
 
 

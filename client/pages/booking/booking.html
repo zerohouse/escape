@@ -6,27 +6,17 @@
     </div>
 </div>
 
-<div class="container" style="margin-bottom: 30px;">
-    <div class="row">
-        <div class="col-md-4">
-            <div date-picker="date" min-view="date" max-view="date"></div>
-        </div>
-        <div class="col-md-8">
-            <div style="margin-left:30px;" class="btn-group" dropdown is-open="status.isopen">
-                <button type="button" class="btn btn-success" dropdown-toggle
-                        ng-disabled="disabled">
-                    {{name[filter.type]||"전체테마"}} <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li ng-click="filter.type=undefined"><a>전체</a></li>
-                    <li class="divider"></li>
-                    <li ng-repeat="(key, value) in name"><a ng-click="filter.type = key">{{value}}</a></li>
-                </ul>
-            </div>
 
-            <div class="panel-body">
-                <h4>
-                    인원
+<div class="container" style="margin-bottom: 30px;" id="booking">
+    <div class="row">
+        <div class="col-md-8" ng-show="res">
+            <div class="panel panel-primary">
+                <div class="panel-heading">예약 <i ng-click="res = !res" class="fa fa-times"></i></div>
+                <div class="panel-body">
+                    <h4>게임 : {{name[game.type]}}</h4>
+                    <h4>시간 : {{game.date.toDateString()}}</h4>
+                    <h4>
+                        인원
                 <span style="margin-left:10px;" class="label"
                       ng-class="{'label-default':size!=1,'label-success':size==1}"
                       ng-click="size=1">1</span>
@@ -38,57 +28,75 @@
                       ng-click="size=4">4</span>
                 <span class="label" ng-class="{'label-default':size!=5,'label-success':size==5}"
                       ng-click="size=5">5</span>
+                    </h4>
+                    <h4>가격 : <i class="fa fa-krw"></i> {{price[size]||0}}</span></h4>
 
-                <span style="margin-left:30px;">
-                <i class="fa fa-krw"></i> {{price[size]||0}}</span>
-                </h4>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container" style="margin-bottom: 30px;" ng-show="res" id="booking">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">예약 <i ng-click="res = !res" class="fa fa-times"></i></div>
-                <div class="panel-body">
-                    <h4>게임 : {{name[game.type]}}</h4>
-                    <h4>시간 : {{game.date.toDateString()}}</h4>
                     <input class="form-control" placeholder="예약자명">
                     <input class="form-control" placeholder="이메일">
                     <input class="form-control" placeholder="연락처">
+                    <textarea class="form-control" placeholder="메모"></textarea>
                 </div>
                 <div class="panel-footer">
                     <div class="btn btn-primary">예약하기</div>
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div date-picker="date" min-view="date" max-view="date"></div>
+        </div>
     </div>
 </div>
 
 <div class="container">
-
     <table class="table">
         <thead>
         <tr>
             <td>시간</td>
-            <td>테마</td>
-            <td>난이도</td>
-            <td>예약현황</td>
+            <td>
+                <div class="btn-group" dropdown>
+                    <button type="button" class="btn btn-success" dropdown-toggle
+                            ng-disabled="disabled">
+                        {{name[filter.type]||"전체테마"}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li ng-click="filter.type=undefined"><a>전체</a></li>
+                        <li class="divider"></li>
+                        <li ng-repeat="(key, value) in name"><a ng-click="filter.type = key">{{value}}</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                난이도
+            </td>
+            <td>
+                <div class="btn-group" dropdown>
+                    <button type="button" class="btn btn-success" dropdown-toggle
+                            ng-disabled="disabled">
+                        {{oname[filter.occupied]||"예약현황"}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li ng-click="filter.occupied=undefined"><a>전체</a></li>
+                        <li class="divider"></li>
+                        <li ng-click="filter.occupied='a'"><a>예약가능</a></li>
+                        <li ng-click="filter.occupied='o'"><a>예약마감</a></li>
+                    </ul>
+                </div>
+            </td>
         </tr>
-
-
         </thead>
         <tbody>
-        <tr ng-repeat="game in games | orderBy:'date' | filter:filter">
+        <tr ng-repeat="game in filteredGames = (games | orderBy:'date' | filter:filter)">
             <td>{{game.date.toTime()}}</td>
             <td>{{name[game.type]}}</td>
             <td><i class="fa fa-cog" ng-repeat="d in diff[game.type]"></i></td>
             <td>
-                <span ng-show="!game.occupied" class="green" ng-click="reserve(game)">예약가능</span>
-                <span ng-show="game.occupied" class="red">예약마감</span>
+                <span ng-show="game.occupied=='a'" class="green" ng-click="reserve(game)">예약가능</span>
+                <span ng-show="game.occupied=='o'" class="red">예약마감</span>
             </td>
+        </tr>
+        <tr ng-show="filteredGames.length==0">
+            <td></td>
+            <td colspan="3">조건에 맞는 게임이 없습니다.</td>
         </tr>
         </tbody>
 
