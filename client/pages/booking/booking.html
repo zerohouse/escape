@@ -85,7 +85,14 @@
         <tr ng-repeat="game in filteredGames = (games | orderBy:'date' | filter:filter)">
             <td>{{game.date.toTime()}}</td>
             <td>{{name[game.type]}}</td>
-            <td><i class="fa fa-cog" ng-repeat="d in diff[game.type]"></i></td>
+            <td>
+                <div ng-switch="diff[game.type]">
+                    <div ng-switch-when="4"><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i
+                            class="fa fa-cog"></i><i class="fa fa-cog"></i></div>
+                    <div ng-switch-when="4.5"><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i class="fa fa-cog half"></i></div>
+                    <div ng-switch-when="5"><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i class="fa fa-cog"></i><i class="fa fa-cog"></i></div>
+                </div>
+            </td>
             <td>
                 <span ng-show="game.occupied=='a'" class="green" ng-click="reserve(game)">예약가능</span>
                 <span ng-show="game.occupied=='o'" class="red">예약마감</span>

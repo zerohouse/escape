@@ -18,10 +18,10 @@ Array.prototype.toggle = function (item) {
 };
 
 String.prototype.toDateString = function () {
-    return new Date(this.toString()).toString();
+    return new Date(this.toString()).toShowString();
 };
 Date.prototype.toDateString = function () {
-    return this.toString();
+    return this.toShowString();
 };
 
 
@@ -46,7 +46,7 @@ Date.prototype.toTime = function () {
 };
 
 
-Date.prototype.toString = function () {
+Date.prototype.toShowString = function () {
     var month = '' + (this.getMonth() + 1),
         day = '' + this.getDate(),
         year = this.getFullYear();

@@ -122,11 +122,11 @@ app.controller('booking', function (req, $scope, $document, $timeout) {
     $scope.name.treasure = "해적 : Treasure Map";
     $scope.oname = {o: "예약마감", a: "예약가능"};
     $scope.diff = {};
-    $scope.diff.terrorist = [0, 1, 2];
-    $scope.diff.collector = [0, 1, 2, 3, 4];
-    $scope.diff.classified = [0, 1, 2, 3];
-    $scope.diff.stalker = [0, 1, 2, 3, 4];
-    $scope.diff.treasure = [0, 1, 2];
+    $scope.diff.terrorist = 4;
+    $scope.diff.collector = 5;
+    $scope.diff.classified = 4.5;
+    $scope.diff.stalker = 5;
+    $scope.diff.treasure = 4;
     $scope.size = 2;
 
     $scope.price = [0, 44000, 44000, 51000, 68000, 85000];
