@@ -19,7 +19,7 @@ app.controller('faq', function ($scope, req) {
     $scope.send = function () {
         if ($scope.error())
             return;
-        var mail = $scope.question.body.replace("\n", "<br>") + " " + $scope.question.email + " " + $scope.question.phone;
+        var mail = $scope.question.body.replace("\n", "<br>") + "<br> 보낸사람: " + $scope.question.email + " (" + $scope.question.phone + ")";
         req.gets('/api/faq', {body: mail}).success(function () {
             $scope.question = {};
             alert("메시지를 보냈습니다.");
