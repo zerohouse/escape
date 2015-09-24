@@ -47,10 +47,10 @@ app.controller('booking', function (req, $scope, $document, $timeout) {
             return "게임 참여 인원을 선택해주세요.";
         if (!info.name)
             return "예약자명을 입력해주세요.";
-        if (!info.email)
-            return "이메일을 입력해주세요.";
-        if (!mail.test(info.email))
-            return "이메일 형식이 다릅니다.";
+        //if (!info.email)
+        //    return "이메일을 입력해주세요.";
+        //if (!mail.test(info.email))
+        //    return "이메일 형식이 다릅니다.";
         if (!info.phone)
             return "핸드폰 번호를 입력해주세요.";
         return false;
