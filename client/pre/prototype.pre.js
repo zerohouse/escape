@@ -45,6 +45,7 @@ Date.prototype.toTime = function () {
     return hours + ':' + minutes;
 };
 
+
 Date.prototype.toString = function () {
     var month = '' + (this.getMonth() + 1),
         day = '' + this.getDate(),

@@ -1,60 +1,25 @@
-app.controller('booking', function (req, $scope, $document, $timeout) {
+app.controller('bookingad', function (req, $scope, $document, $timeout, $stateParams) {
 
-    $scope.booking = function () {
-        var err = $scope.err($scope.info);
-        if (err) {
-            alert(err);
-            return;
-        }
-        var index = $scope.games.indexOf($scope.game);
-        req.post('/api/reserve', {
-            index: $scope.games.indexOf($scope.game),
-            date: $scope.date,
-            info: $scope.info
-        }).success(function (res) {
-            if (res.result)
-                if (res.result.n == 1) {
-                    alert("예약 되었습니다.");
-                    games[index].occupied = 'o';
-                    return;
-                }
-            alert("예약 실패했습니다.");
-        });
-    };
 
     $scope.$watch('date', function (date) {
         if (!date)
             return;
-        req.gets('/api/reserve', {date: date.toUTCString()}).success(function (res) {
+        req.gets('/api/reserve', {date: date.toUTCString(), password: $stateParams.password}).success(function (res) {
             if (!res.result)
                 return;
             if (!res.result.forEach)
                 return;
-            $scope.games.forEach(function (game) {
+            games.forEach(function (game) {
                 game.occupied = 'a';
+                game.info = undefined;
             });
             res.result.forEach(function (result) {
                 $scope.games[result.index].occupied = 'o';
+                $scope.games[result.index].info = result.info;
             });
         });
     });
 
-    $scope.err = function (info) {
-        var mail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-        if (!info)
-            return "게임 참여 인원을 선택해주세요.";
-        if (!info.size)
-            return "게임 참여 인원을 선택해주세요.";
-        if (!info.name)
-            return "예약자명을 입력해주세요.";
-        if (!info.email)
-            return "이메일을 입력해주세요.";
-        if (!mail.test(info.email))
-            return "이메일 형식이 다릅니다.";
-        if (!info.phone)
-            return "핸드폰 번호를 입력해주세요.";
-        return false;
-    };
 
     var date = $scope.date = new Date();
 

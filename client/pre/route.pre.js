@@ -20,6 +20,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: "booking",
             templateUrl: "/dist/pages/booking/booking.html"
         })
+        .state('bookingAdmin', {
+            url: "/booking/admin/:password",
+            controller: "bookingad",
+            templateUrl: "/dist/pages/booking/bookingad.html"
+        })
         .state('room', {
             url: "/room",
             controller: "room",
