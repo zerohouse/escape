@@ -52,6 +52,7 @@
     <table class="table">
         <thead>
         <tr>
+            <td></td>
             <td>시간</td>
             <td dropdown>
                 <span dropdown-toggle ng-click>
@@ -81,6 +82,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="game in filteredGames = (games | orderBy:'date' | filter:filter)">
+            <td></td>
             <td>{{game.date.toTime()}}</td>
             <td>{{name[game.type]}}</td>
             <td>
