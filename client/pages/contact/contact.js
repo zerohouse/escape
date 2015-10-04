@@ -13,7 +13,9 @@ app.controller('contact', function () {
         minMaxLevel: [1, 14],
         size: new nhn.api.map.Size(500, 400)
     });
-
+    var oIcon = new nhn.api.map.Icon('http://static.naver.com/maps2/icons/pin_spot2.png', oSize, oOffset);
+    var oSize = new nhn.api.map.Size(28, 37);
+    var oOffset = new nhn.api.map.Size(14, 37);
     var oMarker = new nhn.api.map.Marker(oIcon, {title: 'SIXTY ESCAPE'});
     oMarker.setPoint(oPoint);
     oMap.addOverlay(oMarker);
