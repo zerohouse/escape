@@ -117,7 +117,7 @@ app.controller('booking', function (req, $scope, $document, $timeout) {
     $scope.name = {};
     $scope.name.terrorist = "테러리스트(Terrorist)";
     $scope.name.collector = "콜렉터 (Collector)";
-    $scope.name.classified = "작전명 Classified";
+    $scope.name.classified = "스파이 : 기밀문서";
     $scope.name.stalker = "스토커 (Stalker)";
     $scope.name.treasure = "해적 : Treasure Map";
     $scope.oname = {o: "예약마감", a: "예약가능"};
