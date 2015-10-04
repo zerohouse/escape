@@ -1,3 +1,20 @@
-asdf
-a테스트
+<div class="container">
+    <div class="panel-body">
+        <h3>Weblcome To Sixtyescape
+            <small>식스티 익스케이프에 오신것을 환영합니다.</small>
+        </h3>
+    </div>
+</div>
 
+<div class="container">
+    <carousel class="main-photos" interval="4000" no-wrap="noWrapSlides">
+        <slide ng-repeat="slide in slides" active="slide.active">
+            <img ng-src="{{slide.image}}" class="slide">
+            <!--<div class="carousel-caption">-->
+            <!--<h4>Slide {{$index}}{{index($index)}}</h4>-->
+
+            <!--<p>{{slide.text}}</p>-->
+            <!--</div>-->
+        </slide>
+    </carousel>
+</div>
