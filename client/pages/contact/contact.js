@@ -1,5 +1,5 @@
 app.controller('contact', function () {
-    var oPoint = new nhn.api.map.LatLng(37.5010226, 127.0396037);
+    var oPoint = new nhn.api.map.LatLng(35.1359970, 129.1000470);
     nhn.api.map.setDefaultPoint('LatLng');
     oMap = new nhn.api.map.Map('tmap' ,{
         point : oPoint,
