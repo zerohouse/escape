@@ -36,7 +36,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/dist/pages/faq/faq.html"
         })
         .state('contact', {
-            url: "/",
+            url: "/contact",
             controller: "contact",
             templateUrl: "/dist/pages/contact/contact.html"
         });
